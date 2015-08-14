@@ -117,8 +117,8 @@ If you discover any security related issues, please email freek@spatie.be instea
 
 ## Credits
 
-- [Sebastian De Deyne][link-author]
-- [All Contributors][link-contributors]
+- [Sebastian De Deyne](https://github.com/sebastiandedeyne)
+- [All Contributors](../../contributors)
 
 ## About Spatie
 
