@@ -1,0 +1,43 @@
+{
+    "name": "spatie/laravel-signed-url",
+    "description": "Laravel implementation of spatie/signed-url",
+    "keywords": [
+        "spatie",
+        "laravel-signed-url"
+    ],
+    "homepage": "https://github.com/spatie/laravel-signed-url",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sebastian De Deyne",
+            "email": "sebastian@spatie.be",
+            "homepage": "https://spatie.be",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php" : ">=5.5.0",
+        "spatie/signed-url": "dev-master",
+        "illuminate/support": "^5.0",
+        "illuminate/http": "^5.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit" : "4.*",
+        "orchestra/testbench": "~3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Spatie\\SignedUrl\\Laravel\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Spatie\\SignedUrl\\Laravel\\Test\\": "tests"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
