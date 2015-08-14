@@ -84,7 +84,7 @@ return [
     /*
      * The default expiration time of a URL in days.
      */
-    'default_expiration_time' => 30,
+    'default_expiration_time' => 1,
 
     /*
      * This strings are used a parameter names in a signed url.
