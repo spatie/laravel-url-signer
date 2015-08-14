@@ -2,16 +2,23 @@
 
 return [
 
-    // A random string used to encrypt the URL signatures.
+    /*
+    * This string is used the to generate a signature. You should
+    * keep this value secret.
+    */
     'signatureKey' => config('app.key'),
 
-    // The default expiration time of a URL in days.
+    /*
+     * The default expiration time of a URL in days.
+     */
     'default_expiration_time' => 30,
 
-    // Overwrite these if you want to use different query parameters.
+    /*
+     * This strings are used a parameter names in a signed url.
+     */
     'parameters' => [
         'expires' => 'expires',
         'signature' => 'signature',
     ],
-    
+
 ];

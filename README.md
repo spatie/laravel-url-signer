@@ -6,29 +6,36 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/spatie/laravel-url-signer.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/laravel-url-signer)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-url-signer.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-url-signer)
 
-Laravel 5.* implementation of [spatie/signed-url](https://github.com/spatie/signed-url). With this package you can generate URLs with an expiration date and signature to prevent unauthorized access, and protect the route via middleware.
+With this package you can generate URLs with an expiration date and signature
+to prevent unauthorized access, and protect the route via middleware.
 
-Protect your routes with middleware: 
-
-```php
-Route::get('protected-route', ['middleware' => 'signedurl', function () {
-    return 'Hello world!';
-}]);
-
-// Aborts with a 403 status code if the route is called without a valid signature
-```
-
-Generate a signed URL that's valid for 30 days: 
+Generate a signed URL that's valid for 30 days:
 
 ```php
-UrlSigner::sign(url('protected-route'), 30);
+UrlSigner::sign('https://myapp.com/protected-route', 30);
 ```
 
 Valid URL's look like this:
 
 ```
-http://app.com/protected-route?expires=xxxxxx&signature=xxxxxx`
+https://app.com/protected-route?expires=xxxxxx&signature=xxxxxx
 ```
+
+The can be validated with:
+```php
+UrlSigner::validate('https://app.com/protected-route?expires=xxxxxx&signature=xxxxxx');
+```
+
+The package also provides a middleware to protect routes:
+
+```php
+Route::get('protected-route', ['middleware' => 'signedurl', function () {
+    return 'Hello secret world!';
+}]);
+
+```
+You app will abort with a 403 status code if the route is called without a valid signature.
+
 
 ## Install
 
@@ -56,31 +63,38 @@ To enable the package, register the serviceprovider, and optionally register the
 
 ## Configuration
 
-The configuration file can be published via:
+The configuration file can optionally be published via:
 
 ```
 php artisan vendor:publish --provider="Spatie\UrlSigner\Laravel\UrlSignerServiceProvider"
 ```
 
-There are several configurable options.
+This is the contents of the file:
 
-```
-signatureKey
-```
+```php
+return [
 
-A random string used to encrypt the URL signatures. Default: `config('app.key')`.
+    /*
+    * This string is used the to generate a signature. You should
+    * keep this value secret.
+    */
+    'signatureKey' => config('app.key'),
 
-```
-default_expiration_time
-```
+    /*
+     * The default expiration time of a URL in days.
+     */
+    'default_expiration_time' => 30,
 
-The default expiration time of a URL in days. Default: 30.
+    /*
+     * This strings are used a parameter names in a signed url.
+     */
+    'parameters' => [
+        'expires' => 'expires',
+        'signature' => 'signature',
+    ],
 
+];
 ```
-parameters.expires & parameters.signature
-```
-
-Overwrite these if you want to use different query parameters. Defaults: `expires` & `signature`.
 
 ## Changelog
 
