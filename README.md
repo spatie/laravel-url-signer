@@ -7,22 +7,22 @@
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/24f14ee1-92d5-4dfc-a91f-f789fd61f14b/mini.png)](https://insight.sensiolabs.com/projects/24f14ee1-92d5-4dfc-a91f-f789fd61f14b)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-url-signer.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-url-signer)
 
-With this package you can generate URLs with an expiration date and signature
-to prevent unauthorized access, and protect the route via middleware.
+This package can create URLs with a limited lifetime. This is done by adding an expiration date and a signature
+to the URL.
 
-Generate a signed URL that's valid for 30 days:
+This is how you can create signed URL that's valid for 30 days:
 
 ```php
 UrlSigner::sign('https://myapp.com/protected-route', 30);
 ```
 
-Valid URL's look like this:
+The output will look like thit:
 
 ```
 https://app.com/protected-route?expires=xxxxxx&signature=xxxxxx
 ```
 
-The can be validated with:
+The URL can be validated with the `validate`-function.
 ```php
 UrlSigner::validate('https://app.com/protected-route?expires=xxxxxx&signature=xxxxxx');
 ```
@@ -35,7 +35,7 @@ Route::get('protected-route', ['middleware' => 'signedurl', function () {
 }]);
 
 ```
-You app will abort with a 403 status code if the route is called without a valid signature.
+Your app will abort with a 403 status code if the route is called without a valid signature.
 
 
 ## Install
