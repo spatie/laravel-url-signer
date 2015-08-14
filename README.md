@@ -1,10 +1,10 @@
 # Create secured URLs with a limited lifetime in Laravel.
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-signed-url.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-signed-url)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-url-signer.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-url-signer)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/spatie/laravel-signed-url.svg?style=flat-square)](https://travis-ci.org/spatie/laravel-signed-url)
-[![Quality Score](https://img.shields.io/scrutinizer/g/spatie/laravel-signed-url.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/laravel-signed-url)
-[![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-signed-url.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-signed-url)
+[![Build Status](https://img.shields.io/travis/spatie/laravel-url-signer.svg?style=flat-square)](https://travis-ci.org/spatie/laravel-url-signer)
+[![Quality Score](https://img.shields.io/scrutinizer/g/spatie/laravel-url-signer.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/laravel-url-signer)
+[![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-url-signer.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-url-signer)
 
 Laravel 5.* implementation of [spatie/signed-url](https://github.com/spatie/signed-url). With this package you can generate URLs with an expiration date and signature to prevent unauthorized access, and protect the route via middleware.
 
@@ -35,7 +35,7 @@ http://app.com/protected-route?expires=xxxxxx&signature=xxxxxx`
 Via Composer:
 
 ```
-$ composer require spatie/laravel-signed-url
+$ composer require spatie/laravel-url-signer
 ```
 
 To enable the package, register the serviceprovider, and optionally register the facade:
@@ -104,6 +104,10 @@ If you discover any security related issues, please email freek@spatie.be instea
 
 - [Sebastian De Deyne][link-author]
 - [All Contributors][link-contributors]
+
+## About Spatie
+
+Spatie is a webdesign agency in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
 
 ## License
 

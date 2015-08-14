@@ -1,6 +1,6 @@
 # Changelog
 
-All Notable changes to `laravel-signed-url` will be documented in this file
+All Notable changes to `laravel-url-signer` will be documented in this file
 
 ## NEXT - YYYY-MM-DD
 

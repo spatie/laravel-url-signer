@@ -1,11 +1,11 @@
 {
-    "name": "spatie/laravel-signed-url",
+    "name": "spatie/laravel-url-signer",
     "description": "Laravel implementation of spatie/signed-url",
     "keywords": [
         "spatie",
-        "laravel-signed-url"
+        "laravel-url-signer"
     ],
-    "homepage": "https://github.com/spatie/laravel-signed-url",
+    "homepage": "https://github.com/spatie/laravel-url-signer",
     "license": "MIT",
     "authors": [
         {
