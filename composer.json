@@ -17,7 +17,7 @@
     ],
     "require": {
         "php" : ">=5.5.0",
-        "spatie/signed-url": "dev-master",
+        "spatie/url-signer": "dev-master",
         "illuminate/support": "^5.0",
         "illuminate/http": "^5.0"
     },
@@ -27,12 +27,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\SignedUrl\\Laravel\\": "src"
+            "Spatie\\UrlSigner\\Laravel\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\SignedUrl\\Laravel\\Test\\": "tests"
+            "Spatie\\UrlSigner\\Laravel\\Test\\": "tests"
         }
     },
     "extra": {

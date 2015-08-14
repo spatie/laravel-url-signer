@@ -1,11 +1,11 @@
 <?php
 
-namespace Spatie\SignedUrl\Laravel\Test;
+namespace Spatie\UrlSigner\Laravel\Test;
 
 use Illuminate\Database\Schema\Blueprint;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Spatie\SignedUrl\Laravel\Middleware\ValidateSignature;
-use Spatie\SignedUrl\Laravel\SignedUrlServiceProvider;
+use Spatie\UrlSigner\Laravel\Middleware\ValidateSignature;
+use Spatie\UrlSigner\Laravel\UrlSignerServiceProvider;
 
 abstract class TestCase extends Orchestra
 {
@@ -31,7 +31,7 @@ abstract class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-            SignedUrlServiceProvider::class,
+            UrlSignerServiceProvider::class,
         ];
     }
 

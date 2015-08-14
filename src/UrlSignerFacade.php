@@ -1,10 +1,10 @@
 <?php
 
-namespace Spatie\SignedUrl\Laravel;
+namespace Spatie\UrlSigner\Laravel;
 
 use Illuminate\Support\Facades\Facade;
 
-class SignedUrlFacade extends Facade
+class UrlSignerFacade extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -13,6 +13,6 @@ class SignedUrlFacade extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'signedurl';
+        return 'url-signer';
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\SignedUrl\Laravel\Middleware;
+namespace Spatie\UrlSigner\Laravel\Middleware;
 
 use Closure;
 
@@ -16,7 +16,7 @@ class ValidateSignature
      */
     public function handle($request, Closure $next)
     {
-        $urlIsSigned = app('signedurl')->validate($request->fullUrl());
+        $urlIsSigned = app('url-signer')->validate($request->fullUrl());
 
         if (! $urlIsSigned) abort(403);
 
