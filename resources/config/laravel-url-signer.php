@@ -14,7 +14,7 @@ return [
     'default_expiration_time_in_days' => 1,
 
     /*
-     * This strings are used a parameter names in a signed url.
+     * These strings are used a parameter names in a signed url.
      */
     'parameters' => [
         'expires' => 'expires',
