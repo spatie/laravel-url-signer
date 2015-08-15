@@ -22,10 +22,10 @@ class ValidateSignatureTest extends TestCase
     /**
      * @test
      */
-    public function it_defaults_to_the_default_expiration_time()
+    public function it_defaults_to_the_default_expiration_time_in_days()
     {
         $url = $this->app['url-signer']->sign("{$this->hostName}/protected-route");
-        $defaultExpiration = config('laravel-url-signer.default_expiration_time');
+        $defaultExpiration = config('laravel-url-signer.default_expiration_time_in_days');
         $expiresParameter = config('laravel-url-signer.parameters.expires');
 
         parse_str(parse_url($url)['query'], $query);

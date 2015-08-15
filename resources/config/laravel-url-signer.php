@@ -11,7 +11,7 @@ return [
     /*
      * The default expiration time of a URL in days.
      */
-    'default_expiration_time' => 1,
+    'default_expiration_time_in_days' => 1,
 
     /*
      * This strings are used a parameter names in a signed url.

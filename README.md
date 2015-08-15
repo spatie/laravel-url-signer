@@ -27,16 +27,7 @@ The URL can be validated with the `validate`-function.
 UrlSigner::validate('https://app.com/protected-route?expires=xxxxxx&signature=xxxxxx');
 ```
 
-The package also provides a middleware to protect routes:
-
-```php
-Route::get('protected-route', ['middleware' => 'signedurl', function () {
-    return 'Hello secret world!';
-}]);
-
-```
-Your app will abort with a 403 status code if the route is called without a valid signature.
-
+The package also provides [a middleware to protect routes](https://github.com/).
 
 ## Install
 
@@ -84,7 +75,7 @@ return [
     /*
      * The default expiration time of a URL in days.
      */
-    'default_expiration_time' => 1,
+    'default_expiration_time_in_days' => 1,
 
     /*
      * This strings are used a parameter names in a signed url.
@@ -96,6 +87,44 @@ return [
 
 ];
 ```
+##Usage
+
+###Signing URLs
+URL's can be signed with the `sign`-method:
+```php
+UrlSigner::sign('https://myapp.com/protected-route');
+```
+By default the lifetime of an URL is one day. This value can be change in the config-file.
+If you want a custom life time, you can specify the number of days the URL should be valid:
+
+```php
+//the generated URL will be valid for 5 days.
+UrlSigner::sign('https://myapp.com/protected-route', 5);
+```
+
+For fine grained control, you may also pass a DateTime instance as the second parameter. The url
+will be valid up to that moment. This example uses Carbon for convience:
+```php
+//This URL will be valid up until 2 hours from the moment it was generated.
+UrlSigner::sign('https://myapp.com/protected-route', Carbon\Carbon::now()->addHours(2); );
+```
+
+###Validating URLs
+URL's can be validated with the `validate`-method:
+```php
+UrlSigner::validate('https://app.com/protected-route?expires=xxxxxx&signature=xxxxxx');
+```
+
+###Protecting routes with middleware
+The package also provides a middleware to protect routes:
+
+```php
+Route::get('protected-route', ['middleware' => 'signedurl', function () {
+    return 'Hello secret world!';
+}]);
+```
+Your app will abort with a 403 status code if the route is called without a valid signature.
+
 
 ## Changelog
 
