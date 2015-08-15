@@ -27,7 +27,7 @@ The URL can be validated with the `validate`-function.
 UrlSigner::validate('https://app.com/protected-route?expires=xxxxxx&signature=xxxxxx');
 ```
 
-The package also provides [a middleware to protect routes](https://github.com/).
+The package also provides [a middleware to protect routes](https://github.com/spatie/laravel-url-signer#protecting-routes-with-middleware).
 
 ## Install
 
