@@ -2,6 +2,7 @@
 
 namespace Spatie\UrlSigner\Laravel;
 
+use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Spatie\UrlSigner\Laravel\Middleware\ValidateSignature;
 use Spatie\UrlSigner\UrlSigner as UrlSignerContract;
@@ -38,6 +39,6 @@ class UrlSignerServiceProvider extends ServiceProvider
 
         $this->app->alias(UrlSignerContract::class, 'url-signer');
 
-        $this->app[\Illuminate\Routing\Router::class]->middleware('signedurl', ValidateSignature::class);
+        $this->app[Router::class]->middleware('signedurl', ValidateSignature::class);
     }
 }
