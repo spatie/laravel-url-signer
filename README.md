@@ -136,6 +136,9 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 $ vendor/bin/phpunit
 ```
 
+##Usage outside Laravel
+If you're working on a non-Laraval project, you can use the [framework agnostic version](https://github.com/spatie/url-signer).
+
 ## Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
