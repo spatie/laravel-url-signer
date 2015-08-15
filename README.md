@@ -110,7 +110,7 @@ UrlSigner::sign('https://myapp.com/protected-route', Carbon\Carbon::now()->addHo
 ```
 
 ###Validating URLs
-URL's can be validated with the `validate`-method:
+To validate a signed URL, simply call the `validate()`-method. This return a boolean.
 ```php
 UrlSigner::validate('https://app.com/protected-route?expires=xxxxxx&signature=xxxxxx');
 ```
