@@ -37,7 +37,7 @@ abstract class TestCase extends Orchestra
 
     protected function registerDefaultRoute()
     {
-        $this->app['router']->get('protected-route', ['middleware' => ValidateSignature::class, function () {
+        $this->app['router']->get('protected-route', ['middleware' => 'signedurl', function () {
             return 'Hello world!';
         }]);
     }
