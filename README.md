@@ -16,7 +16,7 @@ This is how you can create signed URL that's valid for 30 days:
 UrlSigner::sign('https://myapp.com/protected-route', 30);
 ```
 
-The output will look like thit:
+The output will look like this:
 
 ```
 https://app.com/protected-route?expires=xxxxxx&signature=xxxxxx
