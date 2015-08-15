@@ -31,7 +31,7 @@ The package also provides [a middleware to protect routes](https://github.com/sp
 
 ## Install
 
-Via Composer:
+As you would have guessed the package can be installed via Composer:
 
 ```
 $ composer require spatie/laravel-url-signer
