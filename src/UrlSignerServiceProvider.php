@@ -29,7 +29,7 @@ class UrlSignerServiceProvider extends ServiceProvider
 
         $config = config('laravel-url-signer');
 
-        $this->app->bindShared(UrlSignerContract::class, function () use ($config) {
+        $this->app->singleton(UrlSignerContract::class, function () use ($config) {
             return new UrlSigner(
                 $config['signatureKey'],
                 $config['parameters']['expires'],
