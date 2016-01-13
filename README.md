@@ -29,6 +29,8 @@ UrlSigner::validate('https://app.com/protected-route?expires=xxxxxx&signature=xx
 
 The package also provides [a middleware to protect routes](https://github.com/spatie/laravel-url-signer#protecting-routes-with-middleware).
 
+**Notice: Version 1.1.1 has a security vulnerability, please make sure you're using version 1.1.2 or higher**
+
 ## Install
 
 As you would have guessed the package can be installed via Composer:
