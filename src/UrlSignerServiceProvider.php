@@ -43,8 +43,6 @@ class UrlSignerServiceProvider extends ServiceProvider
 
         $config = config('laravel-url-signer');
 
-        $config['signatureKey'] = 'mysecretkey';
-
         $this->app->singleton(UrlSignerContract::class, function () use ($config) {
             return new UrlSigner(
                 $config['signatureKey'],

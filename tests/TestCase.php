@@ -16,6 +16,8 @@ abstract class TestCase extends Orchestra
 
     public function setUp()
     {
+        $this->setApplicationKey();
+
         parent::setUp();
 
         $this->hostName = $this->app['config']->get('app.url');
@@ -33,6 +35,11 @@ abstract class TestCase extends Orchestra
         return [
             UrlSignerServiceProvider::class,
         ];
+    }
+
+    protected function setApplicationKey()
+    {
+        putenv('APP_KEY=mysecretkey');
     }
 
     protected function registerDefaultRoute()
