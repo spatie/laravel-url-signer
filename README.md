@@ -9,7 +9,7 @@
 
 This package can create URLs with a limited lifetime. This is done by adding an expiration date and a signature to the URL.
 
-**Notice: Version 1.1.1 has a security vulnerability, please make sure you're using version 1.1.2 or higher**
+**Notice: Version 1.1.1 has a security vulnerability, please make sure you're using version 1.1.2 or higher!**
 
 This is how you can create signed URL that's valid for 30 days:
 
