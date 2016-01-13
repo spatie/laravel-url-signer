@@ -7,8 +7,9 @@
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/24f14ee1-92d5-4dfc-a91f-f789fd61f14b/mini.png)](https://insight.sensiolabs.com/projects/24f14ee1-92d5-4dfc-a91f-f789fd61f14b)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-url-signer.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-url-signer)
 
-This package can create URLs with a limited lifetime. This is done by adding an expiration date and a signature
-to the URL.
+This package can create URLs with a limited lifetime. This is done by adding an expiration date and a signature to the URL.
+
+**Notice: Version 1.1.1 has a security vulnerability, please make sure you're using version 1.1.2 or higher**
 
 This is how you can create signed URL that's valid for 30 days:
 
@@ -28,8 +29,6 @@ UrlSigner::validate('https://app.com/protected-route?expires=xxxxxx&signature=xx
 ```
 
 The package also provides [a middleware to protect routes](https://github.com/spatie/laravel-url-signer#protecting-routes-with-middleware).
-
-**Notice: Version 1.1.1 has a security vulnerability, please make sure you're using version 1.1.2 or higher**
 
 ## Install
 
