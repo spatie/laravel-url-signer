@@ -105,7 +105,7 @@ UrlSigner::sign('https://myapp.com/protected-route', 5);
 ```
 
 For fine grained control, you may also pass a `DateTime` instance as the second parameter. The url
-will be valid up to that moment. This example uses Carbon for convience:
+will be valid up to that moment. This example uses Carbon for convenience:
 ```php
 //This URL will be valid up until 2 hours from the moment it was generated.
 UrlSigner::sign('https://myapp.com/protected-route', Carbon\Carbon::now()->addHours(2); );
