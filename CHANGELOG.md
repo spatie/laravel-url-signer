@@ -2,6 +2,9 @@
 
 All Notable changes to `laravel-url-signer` will be documented in this file.
 
+## 1.1.3 - 2016-08-23
+- Laravel 5.3 compatibility
+
 ## 1.1.2 - 2016-01-13
 
 - Fixed a security vulnerability with the signature key

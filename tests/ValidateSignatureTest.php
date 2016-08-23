@@ -7,9 +7,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class ValidateSignatureTest extends TestCase
 {
-    /**
-     * @test
-     */
+    /** @test */
     public function it_registered_an_md5_url_signer_in_the_container()
     {
         $instance = $this->app['url-signer'];
@@ -19,9 +17,7 @@ class ValidateSignatureTest extends TestCase
         $this->assertInstanceOf(\Spatie\UrlSigner\Laravel\URLSigner::class, $instance);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function it_defaults_to_the_default_expiration_time_in_days()
     {
         $url = $this->app['url-signer']->sign("{$this->hostName}/protected-route");
@@ -38,9 +34,7 @@ class ValidateSignatureTest extends TestCase
         $this->assertGreaterThan($expectedExpiration - 60 * 5, $query[$expiresParameter]);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function it_rejects_an_unsigned_url()
     {
         $url = "{$this->hostName}/protected-route";
@@ -48,9 +42,7 @@ class ValidateSignatureTest extends TestCase
         $this->assert403Response($url);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function it_accepts_a_signed_url()
     {
         $url = $this->app['url-signer']->sign("{$this->hostName}/protected-route", 1);
@@ -58,9 +50,7 @@ class ValidateSignatureTest extends TestCase
         $this->assert200Response($url);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function it_rejects_a_forged_url()
     {
         $url = "{$this->hostName}/protected-route?expires=123&signature=456";
@@ -70,7 +60,7 @@ class ValidateSignatureTest extends TestCase
 
     /**
      * Assert wether a GET request to a URL returns a 200 response.
-     * 
+     *
      * @param string $url
      */
     protected function assert200Response($url)
@@ -80,18 +70,23 @@ class ValidateSignatureTest extends TestCase
 
     /**
      * Assert wether a GET request to a URL returns a 403 response.
-     * 
+     *
      * @param string $url
      */
     protected function assert403Response($url)
     {
+        // Laravel 5.3 doesn't seem to throw an HttpException in this context,
+        // so we're going to do a check in the try and in the catch
+        // (only one of them will get called)
         try {
-            $this->call('GET', $url);
+            $response = $this->call('GET', $url);
+            $this->assertEquals(403, $response->getStatusCode());
+            return;
         } catch (HttpException $e) {
             $this->assertEquals(403, $e->getStatusCode());
             return;
         }
 
-        $this->fail();
+        $this->fail('Response was ok');
     }
 }
