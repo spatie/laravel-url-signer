@@ -18,7 +18,7 @@ class ValidateSignature
     {
         $urlIsSigned = app('url-signer')->validate($request->fullUrl());
 
-        if (!$urlIsSigned) {
+        if (! $urlIsSigned) {
             abort(403);
         }
 

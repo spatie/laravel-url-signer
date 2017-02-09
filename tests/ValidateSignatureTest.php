@@ -2,7 +2,6 @@
 
 namespace Spatie\UrlSigner\Laravel\Test;
 
-use DateTime;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class ValidateSignatureTest extends TestCase
