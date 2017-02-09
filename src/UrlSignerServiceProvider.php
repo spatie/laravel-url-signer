@@ -25,9 +25,9 @@ class UrlSignerServiceProvider extends ServiceProvider
      */
     protected function setupConfig(Application $app)
     {
-        $source = realpath(__DIR__.'/../config/laravel-url-signer.php');
-        $this->publishes([$source => config_path('laravel-url-signer.php')]);
-        $this->mergeConfigFrom($source, 'laravel-url-signer');
+        $source = realpath(__DIR__.'/../config/url-signer.php');
+        $this->publishes([$source => config_path('url-signer.php')]);
+        $this->mergeConfigFrom($source, 'url-signer');
     }
 
     /**
@@ -35,9 +35,9 @@ class UrlSignerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/laravel-url-signer.php', 'laravel-url-signer');
+        $this->mergeConfigFrom(__DIR__.'/../config/url-signer.php', 'url-signer');
 
-        $config = config('laravel-url-signer');
+        $config = config('url-signer');
 
         $this->app->singleton(UrlSignerContract::class, function () use ($config) {
             return new UrlSigner(
@@ -49,6 +49,6 @@ class UrlSignerServiceProvider extends ServiceProvider
 
         $this->app->alias(UrlSignerContract::class, 'url-signer');
 
-        $this->app[Router::class]->middleware('signedurl', ValidateSignature::class);
+        $this->app[Router::class]->aliasMiddleware('signedurl', ValidateSignature::class);
     }
 }
