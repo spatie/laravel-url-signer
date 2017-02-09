@@ -81,9 +81,11 @@ class ValidateSignatureTest extends TestCase
         try {
             $response = $this->call('GET', $url);
             $this->assertEquals(403, $response->getStatusCode());
+
             return;
         } catch (HttpException $e) {
             $this->assertEquals(403, $e->getStatusCode());
+
             return;
         }
 

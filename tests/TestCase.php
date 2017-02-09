@@ -2,9 +2,7 @@
 
 namespace Spatie\UrlSigner\Laravel\Test;
 
-use Illuminate\Database\Schema\Blueprint;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Spatie\UrlSigner\Laravel\Http\Middleware\ValidateSignature;
 use Spatie\UrlSigner\Laravel\UrlSignerServiceProvider;
 
 abstract class TestCase extends Orchestra
