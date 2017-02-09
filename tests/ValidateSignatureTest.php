@@ -18,23 +18,6 @@ class ValidateSignatureTest extends TestCase
     }
 
     /** @test */
-    public function it_defaults_to_the_default_expiration_time_in_days()
-    {
-        $url = $this->app['url-signer']->sign("{$this->hostName}/protected-route");
-        $defaultExpiration = config('laravel-url-signer.default_expiration_time_in_days');
-        $expiresParameter = config('laravel-url-signer.parameters.expires');
-
-        parse_str(parse_url($url)['query'], $query);
-
-        $expectedExpiration = (new DateTime())->modify("{$defaultExpiration} days")->getTimestamp();
-
-        // We can't test the exact timestamp since it's generated inside the URL signer.
-        // Instead we check if it's in a 5 minute interval of the exptected result.
-        $this->assertLessThan($expectedExpiration + 60 * 5, $query[$expiresParameter]);
-        $this->assertGreaterThan($expectedExpiration - 60 * 5, $query[$expiresParameter]);
-    }
-
-    /** @test */
     public function it_rejects_an_unsigned_url()
     {
         $url = "{$this->hostName}/protected-route";

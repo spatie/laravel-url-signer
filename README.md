@@ -5,11 +5,10 @@
 [![Build Status](https://img.shields.io/travis/spatie/laravel-url-signer.svg?style=flat-square)](https://travis-ci.org/spatie/laravel-url-signer)
 [![Quality Score](https://img.shields.io/scrutinizer/g/spatie/laravel-url-signer.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/laravel-url-signer)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/24f14ee1-92d5-4dfc-a91f-f789fd61f14b/mini.png)](https://insight.sensiolabs.com/projects/24f14ee1-92d5-4dfc-a91f-f789fd61f14b)
+[![StyleCI](https://styleci.io/repos/40713346/shield?branch=master)](https://styleci.io/repos/40713346)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-url-signer.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-url-signer)
 
 This package can create URLs with a limited lifetime. This is done by adding an expiration date and a signature to the URL.
-
-**Notice: Version 1.1.1 has a security vulnerability, please make sure you're using version 1.1.2 or higher!**
 
 This is how you can create signed URL that's valid for 30 days:
 
@@ -39,7 +38,7 @@ Our address is: Spatie, Samberstraat 69D, 2060 Antwerp, Belgium.
 
 The best postcards will get published on the open source page on our website.
 
-## Install
+## Installation
 
 As you would have guessed the package can be installed via Composer:
 
