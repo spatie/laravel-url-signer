@@ -95,9 +95,9 @@ return [
 
 ];
 ```
-##Usage
+## Usage
 
-###Signing URLs
+### Signing URLs
 URL's can be signed with the `sign`-method:
 ```php
 UrlSigner::sign('https://myapp.com/protected-route');
@@ -117,13 +117,13 @@ will be valid up to that moment. This example uses Carbon for convenience:
 UrlSigner::sign('https://myapp.com/protected-route', Carbon\Carbon::now()->addHours(2); );
 ```
 
-###Validating URLs
+### Validating URLs
 To validate a signed URL, simply call the `validate()`-method. This return a boolean.
 ```php
 UrlSigner::validate('https://app.com/protected-route?expires=xxxxxx&signature=xxxxxx');
 ```
 
-###Protecting routes with middleware
+### Protecting routes with middleware
 The package also provides a middleware to protect routes:
 
 ```php
@@ -144,8 +144,8 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 $ vendor/bin/phpunit
 ```
 
-##Usage outside Laravel
-If you're working on a non-Laraval project, you can use the [framework agnostic version](https://github.com/spatie/url-signer).
+## Usage outside Laravel
+If you're working on a non-Laravel project, you can use the [framework agnostic version](https://github.com/spatie/url-signer).
 
 ## Contributing
 
