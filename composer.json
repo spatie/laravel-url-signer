@@ -38,6 +38,14 @@
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Spatie\\UrlSigner\\Laravel\\UrlSignerServiceProvider"
+            ],
+            "aliases": {
+                "UrlSigner": "Spatie\\UrlSigner\\Laravel\\UrlSignerFacade"
+            }
         }
     }
 }
