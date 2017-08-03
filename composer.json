@@ -16,14 +16,14 @@
         }
     ],
     "require": {
-        "php" : "^7.0",
+        "php": "^7.0",
         "spatie/url-signer": "^1.0.1",
-        "illuminate/support": "~5.4.0",
-        "illuminate/http": "~5.4.0"
+        "illuminate/support": "~5.4.0|~5.5.x-dev|~5.5.x-dev",
+        "illuminate/http": "~5.4.0|~5.5.x-dev|~5.5.x-dev"
     },
     "require-dev": {
-        "orchestra/testbench": "~3.4.4",
-        "phpunit/phpunit" : "6.0"
+        "orchestra/testbench": "~3.4.4|~3.5.x-dev|~3.5.x-dev",
+        "phpunit/phpunit": "^6.2"
     },
     "autoload": {
         "psr-4": {
@@ -49,3 +49,4 @@
         }
     }
 }
+
