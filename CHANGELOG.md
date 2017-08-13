@@ -1,6 +1,10 @@
 # Changelog
 
-All Notable changes to `laravel-url-signer` will be documented in this file.
+All notable changes to `laravel-url-signer` will be documented in this file.
+
+## 2.1.0 - 2017-08-13
+
+- add Laravel 5.5 compatibility
 
 ## 2.0.0 - 2017-02-09
 
