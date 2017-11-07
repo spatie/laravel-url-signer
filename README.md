@@ -70,7 +70,7 @@ return [
     * This string is used the to generate a signature. You should
     * keep this value secret.
     */
-    'signatureKey' => config('app.key'),
+    'signatureKey' => env('APP_KEY'),
 
     /*
      * The default expiration time of a URL in days.
