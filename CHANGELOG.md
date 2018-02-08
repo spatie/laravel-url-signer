@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-url-signer` will be documented in this file.
 
+## 2.2.0 - 2018-02-08
+- Added: Laravel 5.6 compatibility
+
 ## 2.1.1 - 2017-11-07
 - Changed: Avoid using `config` in config file
 
