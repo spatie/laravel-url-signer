@@ -1,4 +1,4 @@
-**THIS PACKAGE IS NOT MAINTAINED ANYMORE**
+**THIS PACKAGE IS NOT MAINTAINED ANYMORE. **
 **SIGNING URLS IS NOW PART OF LARAVEL: https://laravel-news.com/signed-routes**
 
 # Create secured URLs with a limited lifetime in Laravel
