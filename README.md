@@ -1,3 +1,6 @@
+**THIS PACKAGE IS NOT MAINTAINED ANYMORE**
+**SIGNING URL IS NOW PART OF LARAVEL: https://laravel-news.com/signed-routes
+
 # Create secured URLs with a limited lifetime in Laravel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-url-signer.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-url-signer)
