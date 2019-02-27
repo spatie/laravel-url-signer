@@ -7,15 +7,11 @@ use Spatie\UrlSigner\Laravel\UrlSignerServiceProvider;
 
 abstract class TestCase extends Orchestra
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $hostName;
 
-    public function setUp()
+    public function setUp(): void
     {
-        $this->setApplicationKey();
-
         parent::setUp();
 
         $this->hostName = $this->app['config']->get('app.url');
@@ -33,11 +29,6 @@ abstract class TestCase extends Orchestra
         return [
             UrlSignerServiceProvider::class,
         ];
-    }
-
-    protected function setApplicationKey()
-    {
-        putenv('APP_KEY=mysecretkey');
     }
 
     protected function registerDefaultRoute()
