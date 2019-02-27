@@ -2,9 +2,13 @@
 
 All notable changes to `laravel-url-signer` will be documented in this file.
 
+## 2.3.0 - 2019-02-27
+
+- drop support for Laravel 5.7 and below
+- drop support for PHP 7.1 and below
+
 ## 2.2.2 - 2019-02-27
 - Added: Laravel 5.8 compatibility
-
 
 ## 2.2.1 - 2018-09-04
 - Added: Laravel 5.7 compatibility
