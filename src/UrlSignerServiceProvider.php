@@ -2,11 +2,11 @@
 
 namespace Spatie\UrlSigner\Laravel;
 
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Contracts\Foundation\Application;
-use Spatie\UrlSigner\UrlSigner as UrlSignerContract;
 use Spatie\UrlSigner\Laravel\Middleware\ValidateSignature;
+use Spatie\UrlSigner\UrlSigner as UrlSignerContract;
 
 class UrlSignerServiceProvider extends ServiceProvider
 {
