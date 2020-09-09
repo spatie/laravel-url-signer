@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-url-signer` will be documented in this file.
 
+## 2.6.0 - 2020-09-09
+
+- add support for Laravel 8
+
 ## 2.5.0 - 2020-03-04
 
 - add support for Laravel 7
