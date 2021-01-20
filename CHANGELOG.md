@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-url-signer` will be documented in this file.
 
+## 2.6.1 - 2021-01-20
+
+- allow PHP 8
+
 ## 2.6.0 - 2020-09-09
 
 - add support for Laravel 8
