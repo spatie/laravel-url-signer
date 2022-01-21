@@ -20,31 +20,7 @@ jobs:
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
 
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_USER: user
-          MYSQL_PASSWORD: secret
-          MYSQL_DATABASE: laravel_health
-          MYSQL_ROOT_PASSWORD: secretroot
-        ports:
-          - 3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-
-      redis:
-        image: redis
-        ports:
-          - 6379:6379
-        options: >-
-          --health-cmd "redis-cli ping"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
     steps:
-
-
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -66,10 +42,5 @@ jobs:
           composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
       - name: Execute tests
-        run: vendor/bin/pest
-        env:
-          DB_USERNAME: user
-          DB_PASSWORD: secret
-          DB_PORT: ${{ job.services.mysql.ports[3306] }}
-          REDIS_PORT: 6379
+        run: vendor/bin/phpunt
 
