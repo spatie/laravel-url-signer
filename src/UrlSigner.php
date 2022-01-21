@@ -9,9 +9,8 @@ class UrlSigner extends MD5UrlSigner
     /**
      * Get a secure URL to a controller action.
      *
-     * @param string             $url
-     * @param \DateTime|int|null $expiration Defaults to the config value
-     *
+     * @param  string  $url
+     * @param  \DateTime|int|null  $expiration  Defaults to the config value
      * @return string
      */
     public function sign($url, $expiration = null): string
