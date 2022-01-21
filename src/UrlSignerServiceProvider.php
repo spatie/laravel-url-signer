@@ -21,7 +21,7 @@ class UrlSignerServiceProvider extends ServiceProvider
     /**
      * Setup the config.
      *
-     * @param \Illuminate\Contracts\Foundation\Application $app
+     * @param  \Illuminate\Contracts\Foundation\Application  $app
      */
     protected function setupConfig(Application $app)
     {

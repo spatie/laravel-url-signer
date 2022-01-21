@@ -43,7 +43,7 @@ class ValidateSignatureTest extends TestCase
     /**
      * Assert wether a GET request to a URL returns a 200 response.
      *
-     * @param string $url
+     * @param  string  $url
      */
     protected function assert200Response($url)
     {
@@ -53,7 +53,7 @@ class ValidateSignatureTest extends TestCase
     /**
      * Assert wether a GET request to a URL returns a 403 response.
      *
-     * @param string $url
+     * @param  string  $url
      */
     protected function assert403Response($url)
     {
