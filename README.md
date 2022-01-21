@@ -6,7 +6,6 @@ SIGNING URLS IS NOW PART OF LARAVEL: https://laravel-news.com/signed-routes**
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-url-signer.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-url-signer)
 [![Build Status](https://img.shields.io/travis/spatie/laravel-url-signer.svg?style=flat-square)](https://travis-ci.org/spatie/laravel-url-signer)
 [![Quality Score](https://img.shields.io/scrutinizer/g/spatie/laravel-url-signer.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/laravel-url-signer)
-[![StyleCI](https://styleci.io/repos/40713346/shield?branch=master)](https://styleci.io/repos/40713346)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-url-signer.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-url-signer)
 
 This package can create URLs with a limited lifetime. This is done by adding an expiration date and a signature to the URL.
