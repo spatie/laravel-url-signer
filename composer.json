@@ -44,5 +44,7 @@
                 "UrlSigner": "Spatie\\UrlSigner\\Laravel\\UrlSignerFacade"
             }
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
