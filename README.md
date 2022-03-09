@@ -1,3 +1,6 @@
+
+[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/support-ukraine.svg?t=1" />](https://supportukrainenow.org)
+
 **THIS PACKAGE IS NOT MAINTAINED ANYMORE. 
 SIGNING URLS IS NOW PART OF LARAVEL: https://laravel-news.com/signed-routes**
 
