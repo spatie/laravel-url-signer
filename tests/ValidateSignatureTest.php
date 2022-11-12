@@ -27,6 +27,5 @@ it('rejects a forged url', function () {
         ->assertForbidden();
 });
 
-it('will not accept a signed URL anymore after it expires', function() {
-
+it('will not accept a signed URL anymore after it expires', function () {
 });
