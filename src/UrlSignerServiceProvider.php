@@ -2,53 +2,31 @@
 
 namespace Spatie\UrlSigner\Laravel;
 
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Routing\Router;
-use Illuminate\Support\ServiceProvider;
-use Spatie\UrlSigner\Laravel\Middleware\ValidateSignature;
-use Spatie\UrlSigner\UrlSigner as UrlSignerContract;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Spatie\UrlSigner\UrlSigner as BaseUrlSigner;
 
-class UrlSignerServiceProvider extends ServiceProvider
+class UrlSignerServiceProvider extends PackageServiceProvider
 {
-    /**
-     * Bootstrap the application events.
-     */
-    public function boot()
+    public function configurePackage(Package $package): void
     {
-        $this->setupConfig($this->app);
+        $package
+            ->name('laravel-url-signer')
+            ->hasConfigFile();
     }
 
-    /**
-     * Setup the config.
-     *
-     * @param \Illuminate\Contracts\Foundation\Application $app
-     */
-    protected function setupConfig(Application $app)
+    public function registeringPackage()
     {
-        $source = realpath(__DIR__.'/../config/url-signer.php');
-        $this->publishes([$source => config_path('url-signer.php')]);
-        $this->mergeConfigFrom($source, 'url-signer');
-    }
+        $this->app->singleton(BaseUrlSigner::class, function () {
+            $config = config('url-signer');
 
-    /**
-     * Register the service provider.
-     */
-    public function register()
-    {
-        $this->mergeConfigFrom(__DIR__.'/../config/url-signer.php', 'url-signer');
-
-        $config = config('url-signer');
-
-        $this->app->singleton(UrlSignerContract::class, function () use ($config) {
             return new UrlSigner(
-                $config['signatureKey'],
+                $config['signature_key'],
                 $config['parameters']['expires'],
                 $config['parameters']['signature']
             );
         });
 
-        $this->app->alias(UrlSignerContract::class, 'url-signer');
-
-        $this->app[Router::class]->aliasMiddleware('signedurl', ValidateSignature::class);
+        $this->app->alias(BaseUrlSigner::class, 'url-signer');
     }
 }

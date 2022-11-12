@@ -1,76 +1,58 @@
 <?php
 
-namespace Spatie\UrlSigner\Laravel\Test;
+namespace Spatie\UrlSigner\Laravel\Tests;
 
-use Symfony\Component\HttpKernel\Exception\HttpException;
+use Spatie\UrlSigner\Laravel\Facades\UrlSigner;
+use Spatie\UrlSigner\Md5UrlSigner;
 
-class ValidateSignatureTest extends TestCase
-{
-    /** @test */
-    public function it_registered_an_md5_url_signer_in_the_container()
-    {
-        $instance = $this->app['url-signer'];
+beforeEach(function () {
+    /** @var \Spatie\UrlSigner\Laravel\UrlSigner urlSigner */
+    $this->urlSigner = app('url-signer');
+});
 
-        $this->assertInstanceOf(\Spatie\UrlSigner\UrlSigner::class, $instance);
-        $this->assertInstanceOf(\Spatie\UrlSigner\MD5UrlSigner::class, $instance);
-        $this->assertInstanceOf(\Spatie\UrlSigner\Laravel\URLSigner::class, $instance);
-    }
+it('registers an url signer', function () {
+    expect($this->urlSigner)->toBeInstanceOf(Md5UrlSigner::class);
+});
 
-    /** @test */
-    public function it_rejects_an_unsigned_url()
-    {
-        $url = "{$this->hostName}/protected-route";
+it('rejects an unsigned url', function () {
+    $this
+        ->get("{$this->hostName}/protected-route")
+        ->assertForbidden();
+});
 
-        $this->assert403Response($url);
-    }
+it('accepts a signed url', function () {
+    $url = $this->urlSigner->sign("{$this->hostName}/protected-route", 1);
 
-    /** @test */
-    public function it_accepts_a_signed_url()
-    {
-        $url = $this->app['url-signer']->sign("{$this->hostName}/protected-route", 1);
+    $this->get($url)->assertSuccessful();
+});
 
-        $this->assert200Response($url);
-    }
+it('rejects a forged url', function () {
+    $this
+        ->get("{$this->hostName}/protected-route?expires=123&signature=456")
+        ->assertForbidden();
+});
 
-    /** @test */
-    public function it_rejects_a_forged_url()
-    {
-        $url = "{$this->hostName}/protected-route?expires=123&signature=456";
+it('will not accept a signed url anymore after it expires', function () {
+    $signedUrl = $this->urlSigner->sign('https://spatie.be', now()->addSeconds(2));
 
-        $this->assert403Response($url);
-    }
+    sleep(1);
 
-    /**
-     * Assert wether a GET request to a URL returns a 200 response.
-     *
-     * @param string $url
-     */
-    protected function assert200Response($url)
-    {
-        $this->assertEquals(200, $this->call('GET', $url)->getStatusCode());
-    }
+    expect($this->urlSigner->validate($signedUrl))->toBeTrue();
 
-    /**
-     * Assert wether a GET request to a URL returns a 403 response.
-     *
-     * @param string $url
-     */
-    protected function assert403Response($url)
-    {
-        // Laravel 5.3 doesn't seem to throw an HttpException in this context,
-        // so we're going to do a check in the try and in the catch
-        // (only one of them will get called)
-        try {
-            $response = $this->call('GET', $url);
-            $this->assertEquals(403, $response->getStatusCode());
+    sleep(2);
 
-            return;
-        } catch (HttpException $e) {
-            $this->assertEquals(403, $e->getStatusCode());
+    expect($this->urlSigner->validate($signedUrl))->toBeFalse();
+});
 
-            return;
-        }
+it('can sign and verify urls via the facade', function () {
+    $signedUrl = UrlSigner::sign('https://spatie.be');
 
-        $this->fail('Response was ok');
-    }
-}
+    expect(UrlSigner::validate($signedUrl))->toBeTrue();
+});
+
+it('can sign and verify using a custom secret', function () {
+    $signedUrl = UrlSigner::sign('https://spatie.be', signatureKey:'my-other-secret');
+
+    expect(UrlSigner::validate($signedUrl, signatureKey: 'my-other-secret'))->toBeTrue();
+    expect(UrlSigner::validate($signedUrl, signatureKey:'wrong-secret'))->toBeFalse();
+});

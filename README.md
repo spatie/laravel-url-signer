@@ -1,9 +1,3 @@
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/support-ukraine.svg?t=1" />](https://supportukrainenow.org)
-
-**THIS PACKAGE IS NOT MAINTAINED ANYMORE. 
-SIGNING URLS IS NOW PART OF LARAVEL: https://laravel-news.com/signed-routes**
-
 # Create secured URLs with a limited lifetime in Laravel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-url-signer.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-url-signer)
@@ -13,10 +7,15 @@ SIGNING URLS IS NOW PART OF LARAVEL: https://laravel-news.com/signed-routes**
 
 This package can create URLs with a limited lifetime. This is done by adding an expiration date and a signature to the URL.
 
+The difference with [Laravel's native route signing](https://laravel.com/docs/master/urls#signed-urls) is that using this package:
+
+- the secret used is not tied to the app key
+- allows you to easily sign any URL (and not only a route belonging to your app), this makes it easy to use signed URLs between different apps.
+
 This is how you can create signed URL that's valid for 30 days:
 
 ```php
-UrlSigner::sign('https://myapp.com/protected-route', 30);
+UrlSigner::sign('https://myapp.com/protected-route', now()->addDays(30);
 ```
 
 The output will look like this:
@@ -43,51 +42,40 @@ We highly appreciate you sending us a postcard from your hometown, mentioning wh
 
 ## Installation
 
-As you would have guessed the package can be installed via Composer:
+As you would have guessed the package can be installed via composer:
 
-```
+```bash
 composer require spatie/laravel-url-signer
 ```
 
-In Laravel 5.5 the service provider and facade will automatically get registered. In older versions of the framework, just add the serviceprovider, and optionally register the facade:
+You must set an environment variable called `URL_SIGNER_SIGNATURE_KEY` and set it to a long secret value. This value will be used to sign and validate signed URLs.
 
-```php
-// config/app.php
-
-'providers' => [
-    ...
-    Spatie\UrlSigner\Laravel\UrlSignerServiceProvider::class,
-];
-
-'aliases' => [
-    ...
-    'UrlSigner' => Spatie\UrlSigner\Laravel\UrlSignerFacade::class,
-];
 ```
+# in your .env file
 
-## Configuration
+URL_SIGNER_SIGNATURE_KEY=some_random_value
+```
 
 The configuration file can optionally be published via:
 
-```
-php artisan vendor:publish --provider="Spatie\UrlSigner\Laravel\UrlSignerServiceProvider"
+```bash
+php artisan vendor:publish --tag="url-signer-config"
 ```
 
 This is the content of the file:
 
 ```php
 return [
-
     /*
     * This string is used the to generate a signature. You should
     * keep this value secret.
     */
-    'signatureKey' => env('APP_KEY'),
+    'signature_key' => env('URL_SIGNER_SIGNATURE_KEY'),
 
     /*
-     * The default expiration time of a URL in days.
+     * The default expiration time of a URL in seconds.
      */
-    'default_expiration_time_in_days' => 1,
+    'default_expiration_time_in_seconds' => 60 * 60 * 24,
 
     /*
      * These strings are used a parameter names in a signed url.
@@ -96,45 +84,63 @@ return [
         'expires' => 'expires',
         'signature' => 'signature',
     ],
-
 ];
 ```
 ## Usage
 
-### Signing URLs
 URL's can be signed with the `sign`-method:
+
 ```php
+use Spatie\UrlSigner\Laravel\Facades\UrlSigner;
+
 UrlSigner::sign('https://myapp.com/protected-route');
 ```
-By default the lifetime of an URL is one day. This value can be change in the config-file.
-If you want a custom life time, you can specify the number of days the URL should be valid:
+
+By default, the lifetime of an URL is one day. This value can be change in the config file.
+If you want a custom lifetime, you can specify the number of days the URL should be valid:
 
 ```php
-//the generated URL will be valid for 5 days.
-UrlSigner::sign('https://myapp.com/protected-route', 5);
-```
+use Spatie\UrlSigner\Laravel\Facades\UrlSigner;
 
-For fine grained control, you may also pass a `DateTime` instance as the second parameter. The url
-will be valid up to that moment. This example uses Carbon for convenience:
-```php
-//This URL will be valid up until 2 hours from the moment it was generated.
-UrlSigner::sign('https://myapp.com/protected-route', Carbon\Carbon::now()->addHours(2) );
+// the generated URL will be valid for 5 minutes.
+UrlSigner::sign('https://myapp.com/protected-route', now()->addMinutes(5));
+
+// alternatively you could also pass the amount of seconds
+UrlSigner::sign('https://myapp.com/protected-route', 60 * 5);
 ```
 
 ### Validating URLs
-To validate a signed URL, simply call the `validate()`-method. This return a boolean.
+
+To validate a signed URL, simply call the `validate()`-method. This method returns a boolean.
+
 ```php
+use Spatie\UrlSigner\Laravel\Facades\UrlSigner;
+
 UrlSigner::validate('https://app.com/protected-route?expires=xxxxxx&signature=xxxxxx');
 ```
 
 ### Protecting routes with middleware
-The package also provides a middleware to protect routes:
+
+The package provides a middleware to protect routes.
+
+To use it you must first register the `Spatie\UrlSigner\Laravel\Middleware\ValidateSignature` as route middleware in your HTTP kernel.
 
 ```php
-Route::get('protected-route', ['middleware' => 'signedurl', function () {
-    return 'Hello secret world!';
-}]);
+// in app/Http/Kernel.php
+
+protected $routeMiddleware = [
+    // ...
+    'signed-url' => \Spatie\UrlSigner\Laravel\Middleware\ValidateSignature::class,
+];
 ```
+
+Next, you can apply it on any route you want.
+
+```php
+Route::get('protected-route', fn () => 'Hello secret world!')
+    ->middleware('signed-url');
+```
+
 Your app will abort with a 403 status code if the route is called without a valid signature.
 
 ## Changelog
