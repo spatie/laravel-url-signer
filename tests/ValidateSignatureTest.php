@@ -26,3 +26,7 @@ it('rejects a forged url', function () {
     $this->get("{$this->hostName}/protected-route?expires=123&signature=456")
         ->assertForbidden();
 });
+
+it('will not accept a signed URL anymore after it expires', function() {
+
+});
