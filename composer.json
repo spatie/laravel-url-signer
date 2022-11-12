@@ -17,14 +17,13 @@
     ],
     "require": {
         "php" : "^8.1",
-        "spatie/url-signer": "v2.x-dev",
+        "spatie/url-signer": "^2.0",
         "illuminate/support": "^9.0",
-        "illuminate/http": "^9.0",
-        "spatie/laravel-package-tools": "^1.13"
+        "spatie/laravel-package-tools": "^1.13.6"
     },
     "require-dev": {
-        "orchestra/testbench": "^7.0",
-        "pestphp/pest": "^1.22"
+        "orchestra/testbench": "^7.12.1",
+        "pestphp/pest": "^1.22.2"
     },
     "autoload": {
         "psr-4": {
