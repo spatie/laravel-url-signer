@@ -2,11 +2,10 @@
 
 namespace Spatie\UrlSigner\Laravel\Tests;
 
-use Spatie\TestTime\TestTime;
 use Spatie\UrlSigner\Laravel\Facades\UrlSigner;
 use Spatie\UrlSigner\Md5UrlSigner;
 
-beforeEach(function() {
+beforeEach(function () {
     /** @var \Spatie\UrlSigner\Laravel\UrlSigner urlSigner */
     $this->urlSigner = app('url-signer');
 });
@@ -33,7 +32,7 @@ it('rejects a forged url', function () {
         ->assertForbidden();
 });
 
-it('will not accept a signed url anymore after it expires', function() {
+it('will not accept a signed url anymore after it expires', function () {
     $signedUrl = $this->urlSigner->sign('https://spatie.be', now()->addSeconds(2));
 
     sleep(1);
@@ -45,16 +44,15 @@ it('will not accept a signed url anymore after it expires', function() {
     expect($this->urlSigner->validate($signedUrl))->toBeFalse();
 });
 
-it('can sign and verify urls via the facade', function() {
+it('can sign and verify urls via the facade', function () {
     $signedUrl = UrlSigner::sign('https://spatie.be');
 
     expect(UrlSigner::validate($signedUrl))->toBeTrue();
 });
 
-it('can sign and verify using a custom secret', function() {
+it('can sign and verify using a custom secret', function () {
     $signedUrl = UrlSigner::sign('https://spatie.be', signatureKey:'my-other-secret');
 
     expect(UrlSigner::validate($signedUrl, signatureKey: 'my-other-secret'))->toBeTrue();
     expect(UrlSigner::validate($signedUrl, signatureKey:'wrong-secret'))->toBeFalse();
-
 });
