@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     * This string is used the to generate a signature. You should
     * keep this value secret.
