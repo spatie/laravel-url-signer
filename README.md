@@ -15,6 +15,8 @@ The difference with [Laravel's native route signing](https://laravel.com/docs/ma
 This is how you can create signed URL that's valid for 30 days:
 
 ```php
+use Spatie\UrlSigner\Laravel\Facades\UrlSigner;
+
 UrlSigner::sign('https://myapp.com/protected-route', now()->addDays(30);
 ```
 
