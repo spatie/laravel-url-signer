@@ -19,5 +19,4 @@ return [
         'expires' => 'expires',
         'signature' => 'signature',
     ],
-
 ];
