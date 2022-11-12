@@ -15,6 +15,8 @@ abstract class TestCase extends Orchestra
     {
         parent::setUp();
 
+        config()->set('url-signer.signature_key', 'dummy-key');
+
         $this->hostName = config('app.url');
 
         $this->registerDefaultRoute();
