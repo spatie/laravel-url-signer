@@ -3,9 +3,9 @@
 namespace Spatie\UrlSigner\Laravel;
 
 use DateTime;
-use Spatie\UrlSigner\MD5UrlSigner;
+use Spatie\UrlSigner\Md5UrlSigner;
 
-class UrlSigner extends MD5UrlSigner
+class UrlSigner extends Md5UrlSigner
 {
     public function sign(
         string $url,
