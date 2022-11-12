@@ -33,6 +33,6 @@ abstract class TestCase extends Orchestra
     {
         Route::aliasMiddleware('signed-url', ValidateSignature::class);
 
-        Route::get('protected-route', fn() => 'Hello world!')->middleware('signed-url');
+        Route::get('protected-route', fn () => 'Hello world!')->middleware('signed-url');
     }
 }

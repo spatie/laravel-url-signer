@@ -17,7 +17,7 @@ class UrlSignerServiceProvider extends PackageServiceProvider
 
     public function registeringPackage()
     {
-        $this->app->singleton(BaseUrlSigner::class, function ()  {
+        $this->app->singleton(BaseUrlSigner::class, function () {
             $config = config('url-signer');
 
             return new UrlSigner(
