@@ -149,17 +149,15 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 ## Testing
 
-``` bash
-$ vendor/bin/phpunit
+You can run the test using this command:
+
+```bash
+composer test
 ```
 
 ## Usage outside Laravel
 
 If you're working on a non-Laravel project, you can use the [framework agnostic version](https://github.com/spatie/url-signer).
-
-## Similar libraries
-
-If you need signed url's for CloudFront, consider [dreamonkey's package](https://github.com/dreamonkey/laravel-cloudfront-url-signer), which is based on this library.
 
 ## Contributing
 
