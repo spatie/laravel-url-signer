@@ -1,76 +1,31 @@
 <?php
 
-namespace Spatie\UrlSigner\Laravel\Test;
+namespace Spatie\UrlSigner\Laravel\Tests;
 
-use Symfony\Component\HttpKernel\Exception\HttpException;
+use Spatie\UrlSigner\Laravel\UrlSigner;
+use Spatie\UrlSigner\Md5UrlSigner;
+use Spatie\UrlSigner\UrlSigner as BaseUrlSigner;
 
-class ValidateSignatureTest extends TestCase
-{
-    /** @test */
-    public function it_registered_an_md5_url_signer_in_the_container()
-    {
-        $instance = $this->app['url-signer'];
+it('registers an url signer', function() {
+    $instance = app('url-signer');
 
-        $this->assertInstanceOf(\Spatie\UrlSigner\UrlSigner::class, $instance);
-        $this->assertInstanceOf(\Spatie\UrlSigner\MD5UrlSigner::class, $instance);
-        $this->assertInstanceOf(\Spatie\UrlSigner\Laravel\URLSigner::class, $instance);
-    }
+    expect($instance)->toBeInstanceOf(Md5UrlSigner::class);
+});
 
-    /** @test */
-    public function it_rejects_an_unsigned_url()
-    {
-        $url = "{$this->hostName}/protected-route";
+it('rejects an unsigned url', function() {
+    $this
+        ->get("{$this->hostName}/protected-route")
+        ->assertForbidden();
+});
 
-        $this->assert403Response($url);
-    }
+it('accepts a signed url', function() {
+    $url = app('url-signer')->sign("{$this->hostName}/protected-route", 1);
 
-    /** @test */
-    public function it_accepts_a_signed_url()
-    {
-        $url = $this->app['url-signer']->sign("{$this->hostName}/protected-route", 1);
+    $this->get($url)->assertSuccessful();
+});
 
-        $this->assert200Response($url);
-    }
+it('rejects a forged url', function() {
 
-    /** @test */
-    public function it_rejects_a_forged_url()
-    {
-        $url = "{$this->hostName}/protected-route?expires=123&signature=456";
-
-        $this->assert403Response($url);
-    }
-
-    /**
-     * Assert wether a GET request to a URL returns a 200 response.
-     *
-     * @param string $url
-     */
-    protected function assert200Response($url)
-    {
-        $this->assertEquals(200, $this->call('GET', $url)->getStatusCode());
-    }
-
-    /**
-     * Assert wether a GET request to a URL returns a 403 response.
-     *
-     * @param string $url
-     */
-    protected function assert403Response($url)
-    {
-        // Laravel 5.3 doesn't seem to throw an HttpException in this context,
-        // so we're going to do a check in the try and in the catch
-        // (only one of them will get called)
-        try {
-            $response = $this->call('GET', $url);
-            $this->assertEquals(403, $response->getStatusCode());
-
-            return;
-        } catch (HttpException $e) {
-            $this->assertEquals(403, $e->getStatusCode());
-
-            return;
-        }
-
-        $this->fail('Response was ok');
-    }
-}
+    $this->get("{$this->hostName}/protected-route?expires=123&signature=456")
+        ->assertForbidden();
+});

@@ -1,29 +1,25 @@
 <?php
 
-namespace Spatie\UrlSigner\Laravel\Test;
+namespace Spatie\UrlSigner\Laravel\Tests;
 
+use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Spatie\UrlSigner\Laravel\Middleware\ValidateSignature;
 use Spatie\UrlSigner\Laravel\UrlSignerServiceProvider;
 
 abstract class TestCase extends Orchestra
 {
-    /** @var string */
-    protected $hostName;
+    protected string $hostName;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
-        $this->hostName = $this->app['config']->get('app.url');
+        $this->hostName = config('app.url');
 
         $this->registerDefaultRoute();
     }
 
-    /**
-     * @param \Illuminate\Foundation\Application $app
-     *
-     * @return array
-     */
     protected function getPackageProviders($app)
     {
         return [
@@ -33,8 +29,8 @@ abstract class TestCase extends Orchestra
 
     protected function registerDefaultRoute()
     {
-        $this->app['router']->get('protected-route', ['middleware' => 'signedurl', function () {
-            return 'Hello world!';
-        }]);
+        Route::aliasMiddleware('signed-url', ValidateSignature::class);
+
+        Route::get('protected-route', fn() => 'Hello world!')->middleware('signed-url');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Spatie\UrlSigner\Laravel;
 
+use DateTime;
 use Spatie\UrlSigner\MD5UrlSigner;
 
 class UrlSigner extends MD5UrlSigner
@@ -14,10 +15,13 @@ class UrlSigner extends MD5UrlSigner
      *
      * @return string
      */
-    public function sign($url, $expiration = null): string
-    {
-        $expiration = $expiration ?? config('url-signer.default_expiration_time_in_days');
+    public function sign(
+        string $url,
+        int|DateTime $expiration,
+        string $signatureKey = null,
+    ): string {
+        $expiration = $expiration ?? config('url-signer.default_expiration_time_in_seconds');
 
-        return parent::sign($url, $expiration);
+        return parent::sign($url, $expiration, $signatureKey);
     }
 }
