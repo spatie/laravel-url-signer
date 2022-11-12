@@ -1,4 +1,4 @@
-# Create secured URLs with a limited lifetime in Laravel
+# Create signed URLs with a limited lifetime in Laravel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-url-signer.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-url-signer)
 [![Build Status](https://img.shields.io/travis/spatie/laravel-url-signer.svg?style=flat-square)](https://travis-ci.org/spatie/laravel-url-signer)
