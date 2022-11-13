@@ -30,6 +30,7 @@ https://app.com/protected-route?expires=xxxxxx&signature=xxxxxx
 The URL can be validated with the `validate`-function.
 
 ```php
+// returns `true` if the signed URL is valid, `false` if not
 UrlSigner::validate('https://app.com/protected-route?expires=xxxxxx&signature=xxxxxx');
 ```
 
