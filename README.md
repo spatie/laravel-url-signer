@@ -9,8 +9,9 @@ This package can create URLs with a limited lifetime. This is done by adding an 
 
 The difference with [Laravel's native route signing](https://laravel.com/docs/master/urls#signed-urls) is that using this package:
 
-- the secret used is not tied to the app key
-- allows you to easily sign any URL (and not only a route belonging to your app), this makes it easy to use signed URLs between different apps.
+- you can easily use signed URLs between different apps
+- the signing secret used is not tied to the app key
+- allows you to easily sign any URL (and not only a route belonging to your app)
 
 This is how you can create signed URL that's valid for 30 days:
 
