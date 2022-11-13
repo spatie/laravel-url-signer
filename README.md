@@ -18,7 +18,7 @@ This is how you can create signed URL that's valid for 30 days:
 ```php
 use Spatie\UrlSigner\Laravel\Facades\UrlSigner;
 
-UrlSigner::sign('https://myapp.com/protected-route', now()->addDays(30);
+UrlSigner::sign('https://myapp.com/protected-route', now()->addDays(30));
 ```
 
 The output will look like this:
