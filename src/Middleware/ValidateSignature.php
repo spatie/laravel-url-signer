@@ -8,9 +8,9 @@ class ValidateSignature
 {
     public function handle($request, Closure $next)
     {
-        $urlIsSigned = app('url-signer')->validate($request->fullUrl());
+        $urlHasValidSignature = app('url-signer')->validate($request->fullUrl());
 
-        if (! $urlIsSigned) {
+        if (! $urlHasValidSignature) {
             $this->handleUnsignedUrl($request);
         }
 
