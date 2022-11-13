@@ -9,15 +9,16 @@ This package can create URLs with a limited lifetime. This is done by adding an 
 
 The difference with [Laravel's native route signing](https://laravel.com/docs/master/urls#signed-urls) is that using this package:
 
-- the secret used is not tied to the app key
-- allows you to easily sign any URL (and not only a route belonging to your app), this makes it easy to use signed URLs between different apps.
+- you can easily use signed URLs between different apps
+- the signing secret used is not tied to the app key
+- you can easily sign any URL (and not only a route belonging to your app)
 
 This is how you can create signed URL that's valid for 30 days:
 
 ```php
 use Spatie\UrlSigner\Laravel\Facades\UrlSigner;
 
-UrlSigner::sign('https://myapp.com/protected-route', now()->addDays(30);
+UrlSigner::sign('https://myapp.com/protected-route', now()->addDays(30));
 ```
 
 The output will look like this:
@@ -29,6 +30,7 @@ https://app.com/protected-route?expires=xxxxxx&signature=xxxxxx
 The URL can be validated with the `validate`-function.
 
 ```php
+// returns `true` if the signed URL is valid, `false` if not
 UrlSigner::validate('https://app.com/protected-route?expires=xxxxxx&signature=xxxxxx');
 ```
 
@@ -179,6 +181,7 @@ We publish all received postcards [on our company website](https://spatie.be/en/
 
 ## Credits
 
+- [Freek Van der Herten](https://github.com/freekmurze)
 - [Sebastian De Deyne](https://github.com/sebastiandedeyne)
 - [All Contributors](../../contributors)
 
