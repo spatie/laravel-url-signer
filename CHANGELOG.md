@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-url-signer` will be documented in this file.
 
+## 3.0.1 - 2023-01-17
+
+### What's Changed
+
+- Laravel 10.x Compatibility by @laravel-shift in https://github.com/spatie/laravel-url-signer/pull/46
+
+### New Contributors
+
+- @laravel-shift made their first contribution in https://github.com/spatie/laravel-url-signer/pull/46
+
+**Full Changelog**: https://github.com/spatie/laravel-url-signer/compare/3.0.0...3.0.1
+
 ## 2.7.0 - 2022-01-21
 
 - allow Laravel 9
