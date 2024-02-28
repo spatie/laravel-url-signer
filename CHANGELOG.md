@@ -2,6 +2,20 @@
 
 All notable changes to `laravel-url-signer` will be documented in this file.
 
+## 3.1.0 - 2024-02-28
+
+### What's Changed
+
+* Bump aglipanci/laravel-pint-action from 1.0.0 to 2.2.0 by @dependabot in https://github.com/spatie/laravel-url-signer/pull/48
+* Bump actions/checkout from 2 to 3 by @dependabot in https://github.com/spatie/laravel-url-signer/pull/47
+* Laravel 11.x Compatibility by @laravel-shift in https://github.com/spatie/laravel-url-signer/pull/53
+
+### New Contributors
+
+* @dependabot made their first contribution in https://github.com/spatie/laravel-url-signer/pull/48
+
+**Full Changelog**: https://github.com/spatie/laravel-url-signer/compare/3.0.1...3.1.0
+
 ## 3.0.1 - 2023-01-17
 
 ### What's Changed
