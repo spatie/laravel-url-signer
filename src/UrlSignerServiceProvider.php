@@ -4,6 +4,7 @@ namespace Spatie\UrlSigner\Laravel;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Spatie\UrlSigner\Laravel\Commands\GenerateUrlSignerSignatureKey;
 use Spatie\UrlSigner\UrlSigner as BaseUrlSigner;
 
 class UrlSignerServiceProvider extends PackageServiceProvider
@@ -12,10 +13,13 @@ class UrlSignerServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('laravel-url-signer')
-            ->hasConfigFile();
+            ->hasConfigFile()
+            ->hasCommands([
+               GenerateUrlSignerSignatureKey::class
+            ]);;
     }
 
-    public function registeringPackage()
+    public function registeringPackage(): void
     {
         $this->app->singleton(BaseUrlSigner::class, function () {
             $config = config('url-signer');
