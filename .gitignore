@@ -3,3 +3,5 @@ composer.lock
 docs
 vendor
 .php-cs-fixer.cache
+
+.phpunit.cache/
