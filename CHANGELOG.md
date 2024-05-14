@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-url-signer` will be documented in this file.
 
+## 3.2.0 - 2024-05-14
+
+### What's Changed
+
+* Implement Key Generation Command for Enhanced Security by @NoahNxT in https://github.com/spatie/laravel-url-signer/pull/54
+
+### New Contributors
+
+* @NoahNxT made their first contribution in https://github.com/spatie/laravel-url-signer/pull/54
+
+**Full Changelog**: https://github.com/spatie/laravel-url-signer/compare/3.1.0...3.2.0
+
 ## 3.1.0 - 2024-02-28
 
 ### What's Changed
