@@ -55,9 +55,10 @@ composer require spatie/laravel-url-signer
 You must set an environment variable called `URL_SIGNER_SIGNATURE_KEY` and set it to a long secret value. This value will be used to sign and validate signed URLs.
 
 ```
-# in your .env file
-
-URL_SIGNER_SIGNATURE_KEY=some_random_value
+php artisan generate:url-signer-signature-key
+        {--s|show : Display the key instead of modifying files.}
+        {--always-no : Skip generating key if it already exists.}
+        {--f|force : Skip confirmation when overwriting an existing key.}
 ```
 
 The configuration file can optionally be published via:
