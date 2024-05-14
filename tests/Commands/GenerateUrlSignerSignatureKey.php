@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Env;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 

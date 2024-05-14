@@ -26,7 +26,6 @@ class GenerateUrlSignerSignatureKey extends Command
 
     /**
      * Execute the console command.
-     * @return void
      */
     public function handle(): void
     {
@@ -39,8 +38,9 @@ class GenerateUrlSignerSignatureKey extends Command
         }
 
         if (file_exists($path = $this->envPath()) === false) {
-             $this->displayKey($key);
-             return;
+            $this->displayKey($key);
+
+            return;
         }
 
         if (Str::contains(file_get_contents($path), 'URL_SIGNER_SIGNATURE_KEY') === false) {
@@ -69,14 +69,10 @@ class GenerateUrlSignerSignatureKey extends Command
 
         $this->displayKey($key);
 
-        return;
     }
 
     /**
      * Display the key.
-     *
-     * @param string $key
-     * @return void
      */
     protected function displayKey(string $key): void
     {
@@ -84,13 +80,10 @@ class GenerateUrlSignerSignatureKey extends Command
 
         $this->info("Url-signer key [$key] set successfully.");
 
-        return;
     }
 
     /**
      * Check if the modification is confirmed.
-     *
-     * @return bool
      */
     protected function isConfirmed(): bool
     {
@@ -101,8 +94,6 @@ class GenerateUrlSignerSignatureKey extends Command
 
     /**
      * Get the .env file path.
-     *
-     * @return string
      */
     protected function envPath(): string
     {

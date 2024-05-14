@@ -15,8 +15,8 @@ class UrlSignerServiceProvider extends PackageServiceProvider
             ->name('laravel-url-signer')
             ->hasConfigFile()
             ->hasCommands([
-               GenerateUrlSignerSignatureKey::class
-            ]);;
+                GenerateUrlSignerSignatureKey::class,
+            ]);
     }
 
     public function registeringPackage(): void

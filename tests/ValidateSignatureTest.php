@@ -51,8 +51,8 @@ it('can sign and verify urls via the facade', function () {
 });
 
 it('can sign and verify using a custom secret', function () {
-    $signedUrl = UrlSigner::sign('https://spatie.be', signatureKey:'my-other-secret');
+    $signedUrl = UrlSigner::sign('https://spatie.be', signatureKey: 'my-other-secret');
 
     expect(UrlSigner::validate($signedUrl, signatureKey: 'my-other-secret'))->toBeTrue();
-    expect(UrlSigner::validate($signedUrl, signatureKey:'wrong-secret'))->toBeFalse();
+    expect(UrlSigner::validate($signedUrl, signatureKey: 'wrong-secret'))->toBeFalse();
 });

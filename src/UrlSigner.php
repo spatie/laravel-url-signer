@@ -9,8 +9,8 @@ class UrlSigner extends Md5UrlSigner
 {
     public function sign(
         string $url,
-        int|DateTime $expiration = null,
-        string $signatureKey = null,
+        int|DateTime|null $expiration = null,
+        ?string $signatureKey = null,
     ): string {
         $expiration ??= config('url-signer.default_expiration_time_in_seconds');
 
