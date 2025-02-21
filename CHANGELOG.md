@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-url-signer` will be documented in this file.
 
+## 3.2.1 - 2025-02-21
+
+### What's Changed
+
+* Laravel 12.x Compatibility by @laravel-shift in https://github.com/spatie/laravel-url-signer/pull/55
+
+**Full Changelog**: https://github.com/spatie/laravel-url-signer/compare/3.2.0...3.2.1
+
 ## 3.2.0 - 2024-05-14
 
 ### What's Changed
