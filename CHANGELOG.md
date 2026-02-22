@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-url-signer` will be documented in this file.
 
+## 3.3.0 - 2026-02-22
+
+Add Laravel 13.x support
+
 ## 3.2.1 - 2025-02-21
 
 ### What's Changed
